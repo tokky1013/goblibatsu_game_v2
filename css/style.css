@@ -1,0 +1,171 @@
+:root {
+    --main-background-color: #ebebeb;
+    --player-color-0: #8effe7;
+    --player-color-1: #ff958f;
+    --player-color-sub-0: #15c3a1f0;
+    --player-color-sub-1: #ff6560f0;
+
+    /* セルのサイズ */
+    --cell-size: 100px;
+    /* 最大の手駒のサイズ */
+    --biggest-chessman-size: 60px;
+}
+
+body {
+    margin: 0;
+    background-color: var(--main-background-color);
+
+    display: flex;
+}
+
+.table-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chessman-container {
+    background-color: #404040;
+    padding: 3px;
+    border: 7px solid transparent;
+    width: calc((100svh - 10px) / 6 - 4px);
+    height: calc(100svh - 20px);
+    overflow-y: scroll;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    transition: 0.2s;
+}
+.chessman-container::-webkit-scrollbar {
+    display: none;
+}
+#chessman-container-0 {
+    flex-direction: column;
+}
+#chessman-container-0.active {
+    border: 7px solid var(--player-color-sub-0);
+    /* background-color: var(--player-color-sub-0); */
+}
+#chessman-container-1 {
+    flex-direction: column-reverse;
+}
+#chessman-container-1.active {
+    border: 7px solid var(--player-color-sub-1);
+    /* background-color: var(--player-color-sub-1); */
+}
+
+.chessman {
+    width: calc((100svh - 10px) / 6 - 10px);
+    height: calc((100svh - 10px) / 6 - 10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.chessman.dragged {
+    width: 90px;
+    height: 90px;
+    position: fixed;
+    margin: 0;
+    z-index: 50 !important;
+}
+.chessman.on-cell {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+    position: fixed;
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+
+    outline: 2px solid #4d744d;
+    background-color: white;
+}
+
+.chessman img,
+.cell img {
+    border-radius: 50%;
+    display: block;
+
+    user-select: none;
+    /* テキスト選択防止 */
+    -webkit-user-drag: none;
+    /* 画像ドラッグ防止 (Safari系) */
+}
+
+.chessman[data-player-num="0"] img {
+    background-color: var(--player-color-0);
+    transform: rotate(90deg);
+}
+
+.chessman[data-player-num="1"] img {
+    background-color: var(--player-color-1);
+    transform: rotate(-90deg);
+}
+
+.chessman[data-size="0"] {
+    z-index: 1;
+}
+.chessman[data-size="0"] img {
+    width: 50%;
+    height: 50%;
+    z-index: 1;
+}
+
+.chessman[data-size="1"] {
+    z-index: 2;
+}
+.chessman[data-size="1"] img {
+    width: 70%;
+    height: 70%;
+    z-index: 2;
+}
+
+.chessman[data-size="2"] {
+    z-index: 3;
+}
+.chessman[data-size="2"] img {
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+/* メッセージ */
+#message-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+#message-0,
+#message-1 {
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 2rem;
+    text-align: center;
+    width: calc(100svh - 100px);
+}
+#message-0 {
+    transform: rotate(90deg);
+}
+#message-1 {
+    transform: rotate(-90deg);
+}
+
+/* その他 */
+.d-none {
+    display: none !important;
+}
