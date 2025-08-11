@@ -267,10 +267,10 @@ function initGame() {
         let { x, y } = getCellAtPointer(event.clientX, event.clientY);
         endDrag(x, y);
     });
-    $(window).on("scroll resize", function() {
+    $(window).on("scroll resize", function () {
         updatePosition();
     });
-    $(window).on("orientationchange", function() {
+    $(window).on("orientationchange", function () {
         setTimeout(updatePosition, 300);
     });
 }
