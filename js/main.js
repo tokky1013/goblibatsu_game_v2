@@ -162,7 +162,7 @@ function endDrag(x, y) {
                 'top': firstPositionCenter[1] - 45 + 'px',
                 'left': firstPositionCenter[0] - 45 + 'px',
             });
-            setTimeout(function() {
+            setTimeout(function () {
                 draggedElem.css('transition', '0s');
                 draggedElem.removeClass('dragged');
             }, 200);
@@ -193,6 +193,9 @@ function endDrag(x, y) {
         }, 500);
     }
     $(window).off('mousemove touchmove');
+    $(window).on('touchmove', function (event) {
+        event.preventDefault(); // プル・トゥ・リフレッシュ防止
+    }, { passive: false });
 }
 
 function nextTurn(initialize = false) {
@@ -253,7 +256,7 @@ function initGame() {
         ];
         draggedElem.addClass('dragged');
         draggedElem.css('transirion', '0s');
-        if(event.clientY === undefined) {
+        if (event.clientY === undefined) {
             draggedElem.css({
                 'top': event.changedTouches[0].pageY - 45 + 'px',
                 'left': event.changedTouches[0].pageX - 45 + 'px',
@@ -277,7 +280,8 @@ function initGame() {
                 'top': event.changedTouches[0].pageY - 45 + 'px',
                 'left': event.changedTouches[0].pageX - 45 + 'px',
             });
-        });
+            event.preventDefault(); // プル・トゥ・リフレッシュ防止
+        }, { passive: false });
     });
 
     // ドラッグ終了時のイベント
