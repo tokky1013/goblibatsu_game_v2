@@ -14,8 +14,11 @@
 body {
     margin: 0;
     background-color: var(--main-background-color);
+    width: 100svw;
+    height: 100svh;
 
     display: flex;
+    flex-direction: column;
 }
 
 .table-container {
@@ -29,8 +32,8 @@ body {
     background-color: #404040;
     padding: 3px;
     border: 7px solid transparent;
-    width: calc((100svh - 10px) / 6 - 4px);
-    height: calc(100svh - 20px);
+    width: calc(100svw - 20px);
+    height: calc((100svw - 10px) / 6 - 4px);
     overflow-y: scroll;
 
     display: flex;
@@ -45,7 +48,7 @@ body {
 }
 
 #chessman-container-0 {
-    flex-direction: column;
+    flex-direction: row-reverse;
 }
 
 #chessman-container-0.active {
@@ -54,7 +57,7 @@ body {
 }
 
 #chessman-container-1 {
-    flex-direction: column-reverse;
+    flex-direction: row;
 }
 
 #chessman-container-1.active {
@@ -63,8 +66,8 @@ body {
 }
 
 .chessman {
-    width: calc((100svh - 10px) / 6 - 10px);
-    height: calc((100svh - 10px) / 6 - 10px);
+    width: calc((100svw - 10px) / 6 - 10px);
+    height: calc((100svw - 10px) / 6 - 10px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,12 +109,11 @@ body {
 
 .chessman[data-player-num="0"] img {
     background-color: var(--player-color-0);
-    transform: rotate(90deg);
+    transform: rotate(180deg);
 }
 
 .chessman[data-player-num="1"] img {
     background-color: var(--player-color-1);
-    transform: rotate(-90deg);
 }
 
 .chessman[data-size="0"] {
@@ -154,8 +156,7 @@ body {
     z-index: 100;
 
     display: flex;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: center;
     background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -164,17 +165,14 @@ body {
     background-color: white;
     border-radius: 5px;
     padding: 10px 20px;
+    margin: auto;
     font-size: 1.7rem;
     text-align: center;
-    width: calc(100svh - 100px);
+    width: calc(100svw - 100px);
 }
 
 #message-0 {
-    transform: rotate(90deg);
-}
-
-#message-1 {
-    transform: rotate(-90deg);
+    transform: rotate(180deg);
 }
 
 /* その他 */
