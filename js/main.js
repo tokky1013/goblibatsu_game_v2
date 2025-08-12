@@ -237,6 +237,18 @@ function initGame() {
         draggedElem = $(this);
         draggedElem.addClass('dragged');
         draggedElem.css('transirion', '0s');
+        if(event.clientY === undefined) {
+            draggedElem.css({
+                'top': event.changedTouches[0].pageY - 45 + 'px',
+                'left': event.changedTouches[0].pageX - 45 + 'px',
+            });
+        } else {
+            draggedElem.css({
+                'top': event.clientY - 45 + 'px',
+                'left': event.clientX - 45 + 'px',
+            });
+        }
+
         // ドラッグ中のイベント
         $(window).on('mousemove', function (event) {
             draggedElem.css({
