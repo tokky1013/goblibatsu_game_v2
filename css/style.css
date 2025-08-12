@@ -28,6 +28,8 @@ body {
 
     display: flex;
     flex-direction: column;
+
+    overscroll-behavior: none;
 }
 
 .table-container {
