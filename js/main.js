@@ -1,4 +1,5 @@
 let draggedElem = null;
+let firstPositionCenter = null;
 let chessmenOnCell = [];
 let turn = 0;
 let locked = false;
@@ -148,13 +149,23 @@ function placeDraggedElem(x, y) {
 function endDrag(x, y) {
     if (!isAllocableChessman(x, y, draggedElem.data('size') - 0)) {
         // 変なところに置いた場合
-        draggedElem.removeClass('dragged');
 
         const parent = draggedElem.parent();
         x = parent.data('x');
         y = parent.data('y');
         if (x !== undefined && y !== undefined) {
+            draggedElem.removeClass('dragged');
             placeDraggedElem(x - 0, y - 0)
+        } else {
+            draggedElem.css('transition', '0.2s');
+            draggedElem.css({
+                'top': firstPositionCenter[1] - 45 + 'px',
+                'left': firstPositionCenter[0] - 45 + 'px',
+            });
+            setTimeout(function() {
+                draggedElem.css('transition', '0s');
+                draggedElem.removeClass('dragged');
+            }, 200);
         }
     } else {
         locked = true
@@ -220,6 +231,7 @@ function initGame() {
         <div class="chessman" data-size="0" data-player-num="1"><img src="./img/face0.png"></div>
     `);
     draggedElem = null;
+    firstPositionCenter = null;
     chessmenOnCell = [];
     nextTurn(true);
 
@@ -235,6 +247,10 @@ function initGame() {
             return;
         }
         draggedElem = $(this);
+        firstPositionCenter = [
+            draggedElem.offset().left + draggedElem.outerWidth() / 2,
+            draggedElem.offset().top + draggedElem.outerHeight() / 2
+        ];
         draggedElem.addClass('dragged');
         draggedElem.css('transirion', '0s');
         if(event.clientY === undefined) {
