@@ -1,5 +1,5 @@
 :root {
-    --main-background-color: #ebebeb;
+    --main-background-color: #eeeeee;
     --player-color-0: #8effe7;
     --player-color-1: #ff958f;
     --player-color-sub-0: #15c3a1f0;
@@ -20,7 +20,7 @@ body {
 
     margin: 0;
     /* background-color: var(--main-background-color); */
-    background-image: url("../img/background.png");
+    background-image: url("../img/background1.PNG");
     background-size: cover;
 
     display: flex;
@@ -99,7 +99,7 @@ body {
     height: 100px;
 
     outline: 2px solid #4d744d;
-    background-color: white;
+    background-color: var(--main-background-color);
 }
 
 .chessman img,
