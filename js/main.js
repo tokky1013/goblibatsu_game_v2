@@ -193,9 +193,6 @@ function endDrag(x, y) {
         }, 500);
     }
     $(window).off('mousemove touchmove');
-    window.addEventListener('touchmove', function(e) {
-        e.preventDefault(); // プル・トゥ・リフレッシュ防止
-    }, { passive: false });
 }
 
 function nextTurn(initialize = false) {
@@ -281,9 +278,6 @@ function initGame() {
                 'left': event.changedTouches[0].pageX - 45 + 'px',
             });
         });
-        window.addEventListener('touchmove', function(e) {
-            e.preventDefault(); // プル・トゥ・リフレッシュ防止
-        }, { passive: false });
     });
 
     // ドラッグ終了時のイベント
@@ -311,4 +305,8 @@ function initGame() {
 
 $(function () {
     initGame();
+
+    window.addEventListener('touchmove', function (e) {
+        e.preventDefault(); // プル・トゥ・リフレッシュ防止
+    }, { passive: false });
 });
