@@ -173,7 +173,7 @@ function endDrag(x, y) {
                     $('#message-1').text('引き分けです');
                 }
                 $('#message-container').removeClass('d-none');
-                $(window).click(function () {
+                $(window).on('mousedown touchstart', function () {
                     initGame();
                 });
                 return;
