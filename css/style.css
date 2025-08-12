@@ -30,6 +30,7 @@ body {
     flex-direction: column;
 
     overscroll-behavior: none;
+    overflow: hidden;
 }
 
 .table-container {
