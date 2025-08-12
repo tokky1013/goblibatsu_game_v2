@@ -19,7 +19,9 @@ body {
     right: 0;
 
     margin: 0;
-    background-color: var(--main-background-color);
+    /* background-color: var(--main-background-color); */
+    background-image: url("../img/background.png");
+    background-size: cover;
 
     display: flex;
     flex-direction: column;
@@ -178,6 +180,10 @@ body {
 
 #message-0 {
     transform: rotate(180deg);
+}
+
+.message-spacer {
+    margin: 60px 0;
 }
 
 /* その他 */
