@@ -193,8 +193,8 @@ function endDrag(x, y) {
         }, 500);
     }
     $(window).off('mousemove touchmove');
-    $(window).on('touchmove', function (event) {
-        event.preventDefault(); // プル・トゥ・リフレッシュ防止
+    window.addEventListener('touchmove', function(e) {
+        e.preventDefault(); // プル・トゥ・リフレッシュ防止
     }, { passive: false });
 }
 
@@ -280,7 +280,9 @@ function initGame() {
                 'top': event.changedTouches[0].pageY - 45 + 'px',
                 'left': event.changedTouches[0].pageX - 45 + 'px',
             });
-            event.preventDefault(); // プル・トゥ・リフレッシュ防止
+        });
+        window.addEventListener('touchmove', function(e) {
+            e.preventDefault(); // プル・トゥ・リフレッシュ防止
         }, { passive: false });
     });
 
